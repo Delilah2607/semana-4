@@ -408,7 +408,7 @@ const replacement_cost = document.getElementById("replacement_cost")
         
         fetch("http://localhost:3000/registrarPelicula", requestOptions)
           .then((response) => response.json())
-          .then((result) => alert(result.data))
+          .then((result) => alert(result.mensaje))
           .catch((error) => console.error(error));
     }
 })
