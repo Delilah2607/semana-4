@@ -4,7 +4,7 @@ const http = require("http"); //procesamiento de peticiones http (web)
 const mysql = require("mysql"); //módulo para gestionar la base de datos (consultas, etc)
 const cors = require('cors');  //******************************************************* */
 
-const {listarTodasPeliculas,consultaPeliculaAnnio,verDetallePelicula} = require("../modulos/peliculas/peliculas.js");
+const {listarTodasPeliculas,consultaPeliculaAnnio,verDetallePelicula,registrarPelicula} = require("../modulos/peliculas/peliculas.js");
 
 
 //Creación de una instancia de express
@@ -84,7 +84,9 @@ app.post("/filtrarPeliculasAnnio", (req, res)=>{
 app.post("/detallePelicula",(req, res)=>{
     verDetallePelicula(req,res);
 });
-
+app.post("/registrarPelicula",(req, res)=>{
+    registrarPelicula(req,res);
+});
 
 //creamos el servidor
 const server = http.createServer(app);

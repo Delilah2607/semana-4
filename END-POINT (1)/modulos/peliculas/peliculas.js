@@ -95,6 +95,55 @@ function consultaPeliculaAnnio(req, res){
     });
 
 }
+function registrarPelicula(req, res) {
+    const conexion = conn;
+
+
+    const {film_id,title,description,release_year,language_id,rental_duration,rental_rate,length,replacement_cost,rating,special_features } = req.body;
+    console.log(req.body);
+
+    // validamos que los acmpos esten llenos 
+    if (!film_id ||!title || !description || !release_year || !language_id||!rental_duration||!rental_rate||!length||!replacement_cost||!rating||!special_features) {
+        return res.status(400).json({ estado: false, mensaje: "Todos los campos son obligatorios" });
+    }
+
+    // Consulta  de regisrrar pelicula
+    const consultaSQL = `INSERT INTO sakila.film (
+    film_id,
+    title,
+    description,
+    release_year,
+    language_id,
+    rental_duration,
+    rental_rate,
+    length,
+    replacement_cost,
+    rating,
+    special_features)
+     VALUES (
+     ?,
+     ?,
+     ?,
+     ?,
+     ?,
+     ?,
+     ?,
+     ?,
+     ?,
+     ?,
+     ?)`;
+
+    conexion.query(consultaSQL, [film_id,title,description,release_year,language_id,rental_duration,rental_rate,length,replacement_cost,rating,special_features], (err, results) => {
+        if (err) {
+            return res.status(500).json({
+                estado: false,
+                mensaje: "Ocurrió un error: " + err
+            });
+        } else {
+            return res.status(201).json({ estado: true, mensaje: "Pelicula exitosamente  registrada ", data: { id: results.film_id,title,description,release_year,language_id,rental_duration,rental_rate,length,replacement_cost,rating,special_features}});
+        }
+    });
+}
 
 //exportamos la funcion que desarrollamos
-module.exports = {listarTodasPeliculas,consultaPeliculaAnnio,verDetallePelicula};
+module.exports = {listarTodasPeliculas,consultaPeliculaAnnio,verDetallePelicula,registrarPelicula};
