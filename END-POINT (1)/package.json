@@ -1,0 +1,21 @@
+{
+  "name": "endpoint",
+  "version": "1.0.0",
+  "description": "API para el consumo de datos de la bse de sakila",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Jehudy",
+  "license": "ISC",
+  "dependencies": {
+    "apidoc": "^1.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "http": "^0.0.1-security",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.0",
+    "pm2": "^5.4.2"
+  }
+}
